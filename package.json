@@ -5,6 +5,7 @@
   "author": "James <aretecode@gmail.com>",
   "main": "src",
   "dependencies": {
+    "core-decorators": "^0.15.0",
     "fbjs": "^0.8.9"
   },
   "bugs": {
