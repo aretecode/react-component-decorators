@@ -1,0 +1,29 @@
+{
+  "name": "react-component-decorators",
+  "description": "React decorators, magic.",
+  "version": "1.0.0",
+  "author": "James <aretecode@gmail.com>",
+  "main": "src",
+  "dependencies": {
+    "fbjs": "^0.8.9"
+  },
+  "bugs": {
+    "url": "https://github.com/aretecode/react-component-decorators/issues"
+  },
+  "homepage": "https://github.com/aretecode/react-component-decorators",
+  "keywords": [
+    "react",
+    "decorators",
+    "loading",
+    "render",
+    "props",
+    "state",
+    "aretecode",
+    "valid"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aretecode/react-component-decorators"
+  }
+}

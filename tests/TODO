@@ -1,0 +1,3 @@
+- [ ] inject props for no specified props
+- [ ] inject props when there are no params
+- [ ] inject props and state
