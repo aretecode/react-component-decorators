@@ -35,10 +35,10 @@ export default function(conditions = {}, options = {}) {
 
       // @autobind
       render() {
-        validateOn(options, this)
         if (options.ready && this.readyToRender) {
           return super.render(this.props, this.state)
         }
+
         // if not valid
         if (validateOn(options, this)) {
           this.readyToRender = true

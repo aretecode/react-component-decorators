@@ -11,6 +11,7 @@ function injectProps(propertyNames, target, name, descriptor) {
       let toInject = []
       for (let i = 0; i < propertyNames.length; i++)
         toInject.push(this[propertyNames[i]])
+
       return originalFunction.apply(this, toInject.concat(args))
     },
   }

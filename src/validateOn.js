@@ -3,9 +3,9 @@
 /**
  * @return {boolean}
  */
-export default function validateOn(conditions, state, options = {}) {
+export default function validateOn(conditions, valuesToCheck, options = {}) {
   const defaultOptions = {
-    satisfied: true,
+    satisfied: false,
     debug: false,
     exists: true,
     thisArg: false,
@@ -23,18 +23,30 @@ export default function validateOn(conditions, state, options = {}) {
   let satisfied = options.satisfied
   let conds = options.conditions
 
+  if (conds.conditions) conds = conds.conditions
+  if (conds.conditions) conds = conds.conditions
+
   if (!conds) {
-    console.error({conditions, state, options})
+    console.error({conditions, valuesToCheck, options})
     throw new Error('@validate on requires .conditions')
   }
 
-  if (options.exists && !state) {
+  if (options.exists && !valuesToCheck) {
     return false
   }
 
+  let condIsObj = false
+  let condKeys = conds
+  if (typeof conds === 'object') {
+    condKeys = Object.keys(conds)
+    condIsObj = true
+  }
+
+
   // loop our condition
-  for (let ii = 0, condsLen = conds.length; ii < condsLen; ii++) {
-    var conditionProperty = conds[ii]
+  for (let ii = 0, condsLen = condKeys.length; ii < condsLen; ii++) {
+    var condProp = condKeys[ii]
+    // if (condIsObj)
 
     // -----
     // loop the values, for the condition at the current condition property
@@ -44,22 +56,26 @@ export default function validateOn(conditions, state, options = {}) {
     //   }
     // }
     let isObj = false
-    let keys = state
-    // if (Array.isArray(state)) keys = state
+    let keys = Object.keys(conds[condProp])
+    let condsForProp = conds[condProp]
 
-    // checks if it exists above ^
-    if (typeof state === 'object') {
-      keys = Object.keys(state)
-      isObj = true
-    }
+    // @example:
+    // `state`
+    var vals = valuesToCheck[condProp]
+
+    // loop through each property of the condition
+    // would be `.loading` from ^
     for (let i = 0, len = keys.length; i < len; i++) {
       var key = keys[i]
-      var val = key
+
+      // @example:
+      // this.state.loading
+      var val = vals[key]
 
       // so we can loop through objects or array
-      if (isObj) val = state[key]
+      // if (isObj) val = state[key]
 
-      var condition = conditionProperty[key]
+      var condition = condsForProp[key]
 
       if (!condition) {
         if (options.debug) {
